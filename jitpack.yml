@@ -1,3 +1,2 @@
 install:
-  - mvn clean test verify
-  - mvn clean cobertura:cobertura coveralls:cobertura
+  - mvn clean install
