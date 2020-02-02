@@ -44,7 +44,7 @@ public class ApprovalBuilderTest {
     public void shouldBuildApprovalsWithDifferentParameters() throws Exception {
         //assign
         Approval<byte[]> approver = Approval.of(byte[].class)
-                .withConveter(new DefaultConverter())
+                .withConverter(new DefaultConverter())
                 .withReporter(Reporters.gvim()).build();
 
         assertThat(approver, CoreMatchers.notNullValue());

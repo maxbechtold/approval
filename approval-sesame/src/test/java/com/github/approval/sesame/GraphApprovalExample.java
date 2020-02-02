@@ -16,7 +16,7 @@ public class GraphApprovalExample {
 
         // Note: this is still thread safe...
         Approval<Graph> graphApproval = Approval.of(Graph.class)
-                .withConveter(new GraphConverter())
+                .withConverter(new GraphConverter())
                 .withReporter(GraphReporter.getInstance())
                 .build();
 

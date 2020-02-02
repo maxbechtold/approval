@@ -50,7 +50,7 @@ public class GraphReporterIT {
         ));
 
         Approval<Graph> approval = Approval.of(Graph.class)
-                .withConveter(new GraphConverter())
+                .withConverter(new GraphConverter())
                 .withReporter(GraphReporter.getInstance())
                 .build();
         approval.verify(graph, Paths.get("src/test/resources/approvals/shouldProperlyConvertTheDotFormatAndThenReportItInConfigredApplication.dot"));

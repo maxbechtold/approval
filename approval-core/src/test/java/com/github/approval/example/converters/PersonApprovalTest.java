@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class PersonApprovalTest {
     private static final Approval<Person> APPROVER = Approval.of(Person.class)
-            .withConveter(new JacksonConverter<Person>())
+            .withConverter(new JacksonConverter<Person>())
             .withReporter(Reporters.gvim())
             .build();
 

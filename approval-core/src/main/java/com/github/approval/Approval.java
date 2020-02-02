@@ -270,7 +270,7 @@ public class Approval<T> {
          * @see Converter
          */
         @Nonnull
-        public ApprovalBuilder<T> withConveter(Converter<T> converterToBeUsed) {
+        public ApprovalBuilder<T> withConverter(Converter<T> converterToBeUsed) {
             Pre.notNull(converterToBeUsed, "converter");
 
             this.converter = converterToBeUsed;

@@ -12,7 +12,7 @@ public class EntityConverterExample {
         Entity entity = new Entity("Nikola", 30);
         Approval<Entity> approver = Approval.of(Entity.class)
                 .withReporter(Reporters.console())
-                .withConveter(new EntityConverter())
+                .withConverter(new EntityConverter())
                 .build();
         approver.verify(entity, Paths.get("src/test/resources/approval/example/entity.verified"));
     }
