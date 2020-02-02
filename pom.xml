@@ -51,7 +51,6 @@
         <connection>scm:git:git@github.com:nikolavp/approval.git</connection>
         <developerConnection>scm:git:git@github.com:nikolavp/approval.git</developerConnection>
         <url>git@github.com:nikolavp/approval.git</url>
-        <tag>approval-core-0.2</tag>
     </scm>
 
     <build>
