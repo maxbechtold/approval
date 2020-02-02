@@ -5,7 +5,7 @@
         <relativePath>..</relativePath>
         <groupId>com.github.maxbechtold</groupId>
         <artifactId>fast-approval</artifactId>
-        <version>0.4</version>
+        <version>0.5-SNAPSHOT</version>
   </parent>
   <artifactId>approval-sesame</artifactId>
   <name>${project.groupId}:${project.artifactId}</name>
