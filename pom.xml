@@ -13,7 +13,7 @@
     <modules>
         <module>approval-core</module>
         <module>approval-json</module>
-    <module>approval-sesame</module>
+        <module>approval-sesame</module>
   </modules>
 
     <licenses>

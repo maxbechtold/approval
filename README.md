@@ -1,6 +1,8 @@
-Approval [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.nikolavp/approval-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.nikolavp/approval-core) [![Build Status](https://secure.travis-ci.org/nikolavp/approval.png)](http://travis-ci.org/nikolavp/approval) [![Coverage Status](https://coveralls.io/repos/nikolavp/approval/badge.png)](https://coveralls.io/r/nikolavp/approval) [![Documentation Status](https://readthedocs.org/projects/approval/badge/?version=latest)](https://readthedocs.org/projects/approval/?badge=latest) [![Gitter chat](https://badges.gitter.im/nikolavp/approval.png)](https://gitter.im/nikolavp/approval)
+FastApproval [![Build Status](https://secure.travis-ci.org/nikolavp/approval.png)](https://travis-ci.com/maxbechtold/approval) [![Coverage Status](https://coveralls.io/repos/nikolavp/approval/badge.png)](https://coveralls.io/r/nikolavp/approval) [![Documentation Status](https://readthedocs.org/projects/approval/badge/?version=latest)](https://readthedocs.org/projects/approval/?badge=latest)
 =======
-Approval is an open source assertion/verification library to aid unit testing.
+Approval is an open source assertion/verification library to aid unit testing. *FastApproval* makes it even more fun. 
+
+This **fork** of @nicolavp/approval aims at maintaining the library for future releases of Java. 
 
 How is approval testing different
 =================================
@@ -23,22 +25,13 @@ Dependencies
 There are currently no dependencies for the project
 
 ## LICENSE
-[Apache 2.0 License](https://github.com/SignalR/SignalR/blob/master/LICENSE.md)
+[Apache 2.0 License](https://github.com/maxbechtold/approval/blob/master/LICENSE.txt)
 
 
-Questions?
+Questions or Issues?
 ---
+You can just file an issue, write a bug report or create a pull request with a patch :)
 
-You can use the gitter chat [![Gitter chat](https://badges.gitter.im/nikolavp/approval.png)](https://gitter.im/nikolavp/approval)
-
-Issues?
----
-You can just write a bug report or even better send a pull request with a patch :)
-
-
-Contributions?
----
-You want to help the project go forward. I am always open for additions contributions. There are several things you can do:
 
 Documentation
 -----
