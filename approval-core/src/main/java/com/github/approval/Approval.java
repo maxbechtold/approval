@@ -5,6 +5,7 @@ package com.github.approval;
  * approval
  * %%
  * Copyright (C) 2014 Nikolavp
+ * Copyright (C) 2018 Max Bechtold
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

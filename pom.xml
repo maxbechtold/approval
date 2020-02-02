@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>https://github.com/nikolavp/approval</url>
+    <url>https://github.com/maxbechtold/approval</url>
     <description>Approval is a Java library which will make you look at your testing from a whole different angle</description>
 
     <modules>
@@ -25,7 +25,7 @@
 
     <issueManagement>
         <system>github</system>
-        <url>http://github.com/nikolavp/approval/issues#issue/</url>
+        <url>https://github.com/maxbechtold/approval/issues</url>
     </issueManagement>
 
     <developers>
@@ -34,6 +34,11 @@
             <email>nikolavp@gmail.com</email>
             <organization>nikolavp</organization>
             <organizationUrl>https://github.com/nikolavp</organizationUrl>
+        </developer>
+        <developer>
+            <name>Max Bechtold</name>
+            <organization>maxbechtold</organization>
+            <organizationUrl>https://github.com/maxbechtold</organizationUrl>
         </developer>
     </developers>
 
@@ -48,9 +53,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:nikolavp/approval.git</connection>
-        <developerConnection>scm:git:git@github.com:nikolavp/approval.git</developerConnection>
-        <url>git@github.com:nikolavp/approval.git</url>
+        <connection>scm:git:git@github.com:maxbechtold/approval.git</connection>
+        <developerConnection>scm:git:git@github.com:maxbechtold/approval.git</developerConnection>
+        <url>git@github.com:maxbechtold/approval.git</url>
     </scm>
 
     <build>
@@ -169,6 +174,7 @@
                     <addSvnKeyWords>false</addSvnKeyWords>
                     <organizationName>Nikolavp</organizationName>
                     <inceptionYear>2014</inceptionYear>
+                    <canUpdateCopyright>false</canUpdateCopyright>
                 </configuration>
                 <executions>
                     <execution>
