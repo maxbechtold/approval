@@ -1,8 +1,10 @@
-FastApproval [![Build Status](https://travis-ci.com/maxbechtold/fast-approval.svg?branch=master)](https://travis-ci.com/maxbechtold/fast-approval) [![Documentation Status](https://readthedocs.org/projects/approval/badge/?version=latest)](https://readthedocs.org/projects/approval/?badge=latest)
+FastApproval [![Build Status](https://travis-ci.com/maxbechtold/fast-approval.svg?branch=master)](https://travis-ci.com/maxbechtold/fast-approval) [![Documentation Status](https://readthedocs.org/projects/approval/badge/?version=latest)](https://readthedocs.org/projects/approval/?badge=latest) [![Jitpack](https://jitpack.io/v/maxbechtold/fast-approval.svg)](https://jitpack.io/#maxbechtold/fast-approval)
 =======
 Approval is an open source assertion/verification library to aid unit testing. *FastApproval* makes it even more fun. 
 
 This **fork** of [@nicolavp/approval](https://github.com/nikolavp/approval) aims at maintaining the library for future releases of Java. 
+
+To include FastApproval in your project, follow the JitPack button above.
 
 How is approval testing different
 =================================
