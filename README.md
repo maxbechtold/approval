@@ -1,8 +1,8 @@
-FastApproval [![Build Status](https://travis-ci.com/maxbechtold/fast-approval.svg?branch=master)](https://travis-ci.com/maxbechtold/approval) [![Documentation Status](https://readthedocs.org/projects/approval/badge/?version=latest)](https://readthedocs.org/projects/approval/?badge=latest)
+FastApproval [![Build Status](https://travis-ci.com/maxbechtold/fast-approval.svg?branch=master)](https://travis-ci.com/maxbechtold/fast-approval) [![Documentation Status](https://readthedocs.org/projects/approval/badge/?version=latest)](https://readthedocs.org/projects/approval/?badge=latest)
 =======
 Approval is an open source assertion/verification library to aid unit testing. *FastApproval* makes it even more fun. 
 
-This **fork** of @nicolavp/approval aims at maintaining the library for future releases of Java. 
+This **fork** of [@nicolavp/approval](https://github.com/nikolavp/approval) aims at maintaining the library for future releases of Java. 
 
 How is approval testing different
 =================================
@@ -25,7 +25,7 @@ Dependencies
 There are currently no dependencies for the project
 
 ## LICENSE
-[Apache 2.0 License](https://github.com/maxbechtold/approval/blob/master/LICENSE.txt)
+[Apache 2.0 License](https://github.com/maxbechtold/fast-approval/blob/master/LICENSE.txt)
 
 
 Questions or Issues?
