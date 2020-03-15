@@ -42,7 +42,7 @@ import java.nio.file.Paths;
  * approval result for the <b>single virifacion</b> will be put in a file with that path. In the latter case you will
  * have to make sure that there aren't two approvals for a single test method. </p>
  */
-public class JunitPathMapper implements TestRule, PathMapper, FullPathMapper {
+public class JunitPathMapper implements TestRule, PathMapper<Object>, FullPathMapper<Object> {
 
     private final Path parentPath;
     private Path currentTestPath;
