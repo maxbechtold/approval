@@ -28,6 +28,8 @@ import com.github.approval.PathMapper;
 /**
  * Maps test classes to a path matching their package structure, with the final directory matching the class name.
  * 
+ * @param <T> arbitrary
+ * 
  * @author Max Bechtold
  *
  */

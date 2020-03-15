@@ -33,11 +33,11 @@ import java.nio.file.Files;
  */
 public class ApprovalScriptWriter {
 
-    static class Factory extends CrossPlatformCommand<ApprovalScriptWriter> {
+    private static class Factory extends CrossPlatformCommand<ApprovalScriptWriter> {
 
         private final String scriptName;
 
-        public Factory(String scriptName) {
+        private Factory(String scriptName) {
             this.scriptName = scriptName;
         }
         

@@ -24,6 +24,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * A converter for files
+ * 
+ * @author Max Bechtold
+ *
+ */
 public class FileConverter implements Converter<File> {
 
     @Override
