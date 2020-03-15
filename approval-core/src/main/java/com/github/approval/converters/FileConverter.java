@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 /**
- * A converter for files
+ * A converter for files.
  * 
  * @author Max Bechtold
  *

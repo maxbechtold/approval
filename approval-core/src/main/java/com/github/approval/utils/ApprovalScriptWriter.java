@@ -33,7 +33,10 @@ import java.nio.file.Files;
  */
 public class ApprovalScriptWriter {
 
-    private static class Factory extends CrossPlatformCommand<ApprovalScriptWriter> {
+    /**
+     * .
+     */
+    private static final class Factory extends CrossPlatformCommand<ApprovalScriptWriter> {
 
         private final String scriptName;
 
@@ -90,12 +93,20 @@ public class ApprovalScriptWriter {
 
     public boolean updateScript() {
         if (scriptBuilder.length() == 0) {
-            scriptFile.delete();
+            tryToDeleteScript();
             return false;
         }
 
         writeScriptContent();
         return true;
+    }
+
+    private void tryToDeleteScript() {
+        try {
+            Files.delete(scriptFile.toPath());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to delete existing approval script", e);
+        }
     }
 
     private void writeScriptContent() {
