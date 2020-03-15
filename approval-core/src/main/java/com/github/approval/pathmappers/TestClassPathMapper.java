@@ -25,6 +25,12 @@ import java.nio.file.Path;
 
 import com.github.approval.PathMapper;
 
+/**
+ * Maps test classes to a path matching their package structure, with the final directory matching the class name.
+ * 
+ * @author Max Bechtold
+ *
+ */
 public class TestClassPathMapper<T> implements PathMapper<T> {
 
     private final Path approvalPath;

@@ -25,6 +25,12 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
+/**
+ * Allows to create a platform dependent script file which helps in creating or replacing .approval files.
+ * 
+ * @author Max Bechtold
+ *
+ */
 public class ApprovalScriptWriter {
 
     static class Factory extends CrossPlatformCommand<ApprovalScriptWriter> {

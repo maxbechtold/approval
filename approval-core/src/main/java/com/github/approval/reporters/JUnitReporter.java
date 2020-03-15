@@ -29,8 +29,15 @@ import org.opentest4j.TestAbortedException;
 import com.github.approval.Reporter;
 import com.github.approval.utils.ApprovalScriptWriter;
 
+/**
+ * Reports approval failures by the means of JUnit and OpenTest4J.
+ * 
+ * @author Max Bechtold
+ *
+ */
 public class JUnitReporter implements Reporter {
 
+    private static final int PERCENT_FACTOR = 100;
     private static final double MAX_DEVIATION = 0.000;
     private final ApprovalScriptWriter approvalScriptWriter;
 
@@ -43,7 +50,7 @@ public class JUnitReporter implements Reporter {
         if (oldValueBytes.length == newValueBytes.length) {
             double error = calculateError(oldValueBytes, newValueBytes);
             if (error < MAX_DEVIATION) {
-                throw new TestAbortedException(String.format("Approval failed with less than %s %% difference, skipping test", MAX_DEVIATION * 100));
+                throw new TestAbortedException(String.format("Approval failed with less than %s %% difference, skipping test", MAX_DEVIATION * PERCENT_FACTOR));
             }
         }
 
