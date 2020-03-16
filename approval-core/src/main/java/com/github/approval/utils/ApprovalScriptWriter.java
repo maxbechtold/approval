@@ -112,7 +112,7 @@ public class ApprovalScriptWriter {
     private void writeScriptContent() {
         try {
             Files.write(scriptFile.toPath(), scriptBuilder.toString().getBytes(StandardCharsets.UTF_8));
-//            scriptFile.setExecutable(true, false);
+            scriptFile.setExecutable(true, false);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

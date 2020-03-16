@@ -71,10 +71,11 @@ public class ApprovalScriptWriterTest {
         approvalScriptWriter.updateScript();
 
         assertThat(scriptFile.exists()).isTrue();
-        // Note: Auto-true on Windows 10 where there's usually no restriction in place
-        assertThat(scriptFile.canExecute()).isTrue();
         assertThat(scriptFile)
                 .hasContent("mv -f \"" + sourceFile.getAbsolutePath() + "\" \"" + targetFile.getAbsolutePath() + "\"");
+        
+        // Note: Auto-true on Windows 10 where there's usually no restriction in place
+        assertThat(scriptFile.canExecute()).isTrue();
     }
 
     @Test
