@@ -46,10 +46,7 @@
         <github.global.userName>maxbechtold</github.global.userName>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdkTarget>1.7</jdkTarget>
-        <coberturaCoverageRate>89</coberturaCoverageRate>
-        <individual.coverage>70</individual.coverage>
         <guava.version>13.0.1</guava.version>
-        <cobertura.format>xml</cobertura.format>
     </properties>
 
     <scm>
@@ -68,13 +65,6 @@
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
                 </configuration>
-                <!--<dependencies>-->
-                    <!--<dependency>-->
-                        <!--<groupId>com.puppycrawl.tools</groupId>-->
-                        <!--<artifactId>checkstyle</artifactId>-->
-                        <!--<version>5.9</version>-->
-                    <!--</dependency>-->
-                <!--</dependencies>-->
                 <executions>
                     <execution>
                         <id>checkstyle-verify</id>
@@ -85,13 +75,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- 
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>2.2.0</version>
-            </plugin>
-             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
@@ -131,35 +114,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <format>${cobertura.format}</format>
-                    <aggregate>true</aggregate>
-                    <check>
-                        <branchRate>${individual.coverage}</branchRate>
-                        <lineRate>${individual.coverage}</lineRate>
-                        <haltOnFailure>true</haltOnFailure>
-                        <totalBranchRate>${coberturaCoverageRate}</totalBranchRate>
-                        <totalLineRate>${coberturaCoverageRate}</totalLineRate>
-                        <packageLineRate>${coberturaCoverageRate}</packageLineRate>
-                        <packageBranchRate>${coberturaCoverageRate}</packageBranchRate>
-                    </check>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>cobertura-verify</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -250,51 +204,6 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
-    <profiles>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.4</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <keyname>A16670BB</keyname>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
     <dependencies>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
