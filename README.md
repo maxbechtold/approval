@@ -24,7 +24,11 @@ The current project is using ideas from [ApprovalTests](https://github.com/appro
 
 Dependencies
 ---
-There are currently no dependencies for the project
+There are currently no dependencies for the project.
+
+Build and Release
+---
+We use TravisCI to build and test *FastApproval*. In order to release a new version, `mvn release:prepare release:clean` is enough (no deployment).
 
 ## LICENSE
 [Apache 2.0 License](https://github.com/maxbechtold/fast-approval/blob/master/LICENSE.txt)
