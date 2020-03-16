@@ -7,7 +7,7 @@
     <version>0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
-    <url>https://github.com/maxbechtold/approval</url>
+    <url>https://github.com/maxbechtold/fast-approval</url>
     <description>Approval is a Java library which will make you look at your testing from a whole different angle</description>
 
     <modules>
@@ -25,7 +25,7 @@
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/maxbechtold/approval/issues</url>
+        <url>https://github.com/maxbechtold/fast-approval/issues</url>
     </issueManagement>
 
     <developers>
@@ -50,9 +50,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:maxbechtold/approval.git</connection>
-        <developerConnection>scm:git:git@github.com:maxbechtold/approval.git</developerConnection>
-        <url>git@github.com:maxbechtold/approval.git</url>
+        <connection>scm:git:git@github.com:maxbechtold/fast-approval.git</connection>
+        <developerConnection>scm:git:git@github.com:maxbechtold/fast-approval.git</developerConnection>
+        <url>git@git@github.com:maxbechtold/fast-approval.git</url>
       <tag>HEAD</tag>
   </scm>
 
