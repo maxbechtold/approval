@@ -28,7 +28,7 @@ There are currently no dependencies for the project.
 
 Build and Release
 ---
-We use TravisCI to build and test *FastApproval*. In order to release a new version, `mvn release:prepare release:clean` is enough (no deployment).
+We use TravisCI to build and test *FastApproval*. In order to release a new version, `mvn release:prepare release:clean` is enough (no deployment, as binaries are created on-the-fly with JitPack).
 
 ## LICENSE
 [Apache 2.0 License](https://github.com/maxbechtold/fast-approval/blob/master/LICENSE.txt)
