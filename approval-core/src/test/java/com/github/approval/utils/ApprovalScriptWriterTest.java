@@ -19,10 +19,11 @@ package com.github.approval.utils;
  * limitations under the License.
  * #L%
  */
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.junit.Test;
 
@@ -36,14 +37,44 @@ public class ApprovalScriptWriterTest {
     @Test
     public void writesSingleMoveCommand() throws Exception {
         File scriptFile = File.createTempFile("script", ".bat");
+
         ApprovalScriptWriter approvalScriptWriter = new ApprovalScriptWriter("move", "/Y", scriptFile);
 
         approvalScriptWriter.addMoveCommand(sourceFile, targetFile);
         approvalScriptWriter.updateScript();
 
         assertThat(scriptFile.exists()).isTrue();
-        assertThat(scriptFile).hasContent(
-                "move /Y \"" + sourceFile.getAbsolutePath() + "\" \"" + targetFile.getAbsolutePath() + "\"");
+        assertThat(scriptFile).hasContent("move /Y \"" + sourceFile.getAbsolutePath() + "\" \"" + targetFile.getAbsolutePath() + "\"");
+    }
+
+    @Test
+    public void failsIfScriptCannotBeDeleted() throws Exception {
+        File scriptFile = File.createTempFile("script", ".bat");
+        scriptFile.setWritable(false, false);
+        ApprovalScriptWriter approvalScriptWriter = new ApprovalScriptWriter("move", "/Y", scriptFile);
+
+        approvalScriptWriter.addMoveCommand(sourceFile, targetFile);
+
+        try {
+            approvalScriptWriter.updateScript();
+            fail("Should throw RuntimeException");
+        } catch (RuntimeException e) {
+            assertThat(e).isInstanceOf(RuntimeException.class);
+        }
+
+        assertThat(scriptFile.exists()).isTrue();
+    }
+
+    @Test
+    public void doesntFailIfScriptDoesntExist() throws Exception {
+        Path scriptDir = Files.createTempDirectory("script");
+        File scriptFile = new File(scriptDir.toFile(), "script");
+
+        ApprovalScriptWriter approvalScriptWriter = new ApprovalScriptWriter("move", "/Y", scriptFile);
+
+        approvalScriptWriter.updateScript();
+
+        assertThat(scriptFile.exists()).isFalse();
     }
 
     @Test
@@ -56,10 +87,9 @@ public class ApprovalScriptWriterTest {
         approvalScriptWriter.updateScript();
 
         assertThat(scriptFile.exists()).isTrue();
-        assertThat(scriptFile)
-                .hasContent("move /Y \"" + sourceFile.getAbsolutePath() + "\" \"" + targetFile.getAbsolutePath() + "\"" //
-                        + System.lineSeparator() //
-                        + "move /Y \"" + targetFile.getAbsolutePath() + "\" \"" + sourceFile.getAbsolutePath() + "\"");
+        assertThat(scriptFile).hasContent("move /Y \"" + sourceFile.getAbsolutePath() + "\" \"" + targetFile.getAbsolutePath() + "\"" //
+                + System.lineSeparator() //
+                + "move /Y \"" + targetFile.getAbsolutePath() + "\" \"" + sourceFile.getAbsolutePath() + "\"");
     }
 
     @Test
@@ -71,9 +101,8 @@ public class ApprovalScriptWriterTest {
         approvalScriptWriter.updateScript();
 
         assertThat(scriptFile.exists()).isTrue();
-        assertThat(scriptFile)
-                .hasContent("mv -f \"" + sourceFile.getAbsolutePath() + "\" \"" + targetFile.getAbsolutePath() + "\"");
-        
+        assertThat(scriptFile).hasContent("mv -f \"" + sourceFile.getAbsolutePath() + "\" \"" + targetFile.getAbsolutePath() + "\"");
+
         // Note: Auto-true on Windows 10 where there's usually no restriction in place
         assertThat(scriptFile.canExecute()).isTrue();
     }
