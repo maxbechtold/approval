@@ -203,7 +203,7 @@ public class Approval<T> {
             byte[] fileContent = fileSystemReadWriter.readFully(file.toPath());
             if (!Arrays.equals(fileContent, rawValue)) {
                 try {
-                    LOG.info("Approval in " + file + " is not the same as the last value. You will be asked for approval of the new value.");
+                    LOG.info("Value to approve does not match approval file " + file.toString());
                     fileSystemReadWriter.write(approvalPath, rawValue);
                 } catch (IOException e) {
                     throw new AssertionError("Couldn't write the new approval file " + file, e);
@@ -211,7 +211,7 @@ public class Approval<T> {
                 reporter.notTheSame(fileContent, file, rawValue, approvalPath.toFile());
             }
         } catch (IOException e) {
-            throw new AssertionError("Couldn't read the previous content in file " + file, e);
+            throw new AssertionError("Couldn't read the content in file " + file, e);
         }
 
         //value approved

@@ -38,32 +38,39 @@ import com.github.approval.utils.ApprovalScriptWriter;
 public class JUnitReporter implements Reporter {
 
     private static final int PERCENT_FACTOR = 100;
-    private static final double MAX_DEVIATION = 0.000;
+    private static final double DEFAULT_DEVIATION = 0.000;
     private final ApprovalScriptWriter approvalScriptWriter;
+    private final double deviation;
 
     public JUnitReporter(ApprovalScriptWriter approvalScriptWriter) {
+        this(approvalScriptWriter, DEFAULT_DEVIATION);
+    }
+
+    public JUnitReporter(ApprovalScriptWriter approvalScriptWriter, double deviation) {
         this.approvalScriptWriter = approvalScriptWriter;
+        this.deviation = deviation;
     }
 
     @Override
     public void notTheSame(byte[] oldValueBytes, File fileForVerification, byte[] newValueBytes, File fileForApproval) {
         if (oldValueBytes.length == newValueBytes.length) {
             double error = calculateError(oldValueBytes, newValueBytes);
-            if (error < MAX_DEVIATION) {
-                throw new TestAbortedException(String.format("Approval failed with less than %s %% difference, skipping test", MAX_DEVIATION * PERCENT_FACTOR));
+            if (error < deviation) {
+                throw new TestAbortedException(String.format("Approval failed with less than %s %% difference, skipping test", deviation * PERCENT_FACTOR));
             }
         }
 
-        String message = "Approval failed, please check console output.\n";
+        String message = "Approval failed, please check console log.";
         notifyMismatch(fileForVerification, fileForApproval, message, asString(oldValueBytes), asString(newValueBytes));
     }
 
     private void notifyMismatch(File fileForVerification, File fileForApproval, String message, String oldValue, String newValue) throws AssertionFailedError {
         approvalScriptWriter.addMoveCommand(fileForApproval, fileForVerification);
-        AssertionFailedError error = new AssertionFailedError(message, oldValue, newValue);
-        String format = "expected: %sactual:   %s%n";
-        System.err.printf(format, error.getExpected().getStringRepresentation(), error.getActual().getStringRepresentation());
-        throw error;
+
+        String conflictMessage = new ConflictMessage(oldValue, newValue).create();
+        AssertionFailedError innerError = new AssertionFailedError(conflictMessage, oldValue, newValue);
+
+        throw new AssertionFailedError(message, oldValue, newValue, innerError);
     }
 
     private String asString(byte[] oldValue) {
@@ -88,7 +95,7 @@ public class JUnitReporter implements Reporter {
 
     @Override
     public void approveNew(byte[] newValueBytes, File fileForApproval, File fileForVerification) {
-        String message = "First approval, please check console output.\n";
+        String message = "First approval, please check console log.";
         notifyMismatch(fileForVerification, fileForApproval, message, "", asString(newValueBytes));
     }
 }
