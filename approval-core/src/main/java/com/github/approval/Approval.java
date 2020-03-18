@@ -98,7 +98,7 @@ public class Approval<T> {
             return Paths.get(s + FOR_APPROVAL_EXTENSION);
         }
 
-        int lastPartOfPath = s.lastIndexOf('/');
+        int lastPartOfPath = s.lastIndexOf(File.separatorChar);
         if (lastPartOfPath != -1 && lastPartOfPath > extensionIndex) {
             //there was no extension and the directory contains dots.
             return Paths.get(s + FOR_APPROVAL_EXTENSION);
