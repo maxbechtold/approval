@@ -59,6 +59,7 @@ public final class WindowsReporters {
         }
     }
 
+    private static final ExecutableDifferenceReporter FC = new WindowsExecutableReporter("cmd /C FC.exe", "cmd /C FC.exe", "FC.exe");
     private static final Reporter NOTEPAD_PLUS_PLUS = SwingInteractiveReporter.wrap(new WindowsExecutableReporter("cmd /C notepad++", "cmd /C notepad++", "notepad++") {
         @Override
         protected String[] buildApproveNewCommand(File approvalDestination, File fileForVerification) {
@@ -70,6 +71,13 @@ public final class WindowsReporters {
     private static final ExecutableDifferenceReporter TORTOISE_TEXT_DIFF = new WindowsExecutableReporter("cmd /C TortoiseMerge", "cmd /C TortoiseMerge", "TortoiseMerge");
     private static final ExecutableDifferenceReporter WIN_MERGE = new WindowsExecutableReporter("cmd /C WinMergeU", "cmd /C WinMergeU", "WinMergeU");
 
+    /**
+     * A reporter based on the native platform diff tool.
+     * 
+     */
+    public static Reporter fcNative() {
+        return FC;
+    }
     /**
      * A reporter that calls <a href="http://notepad-plus-plus.org/">notepad++</a> to show you the results.
      *

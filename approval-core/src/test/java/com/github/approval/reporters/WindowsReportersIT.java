@@ -1,5 +1,13 @@
 package com.github.approval.reporters;
 
+import java.awt.GraphicsEnvironment;
+import java.nio.file.Paths;
+
+import org.junit.Assume;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestName;
+
 /*
  * #%L
  * com.github.github:approval-core
@@ -23,22 +31,18 @@ package com.github.approval.reporters;
 import com.github.approval.Approval;
 import com.github.approval.Reporter;
 import com.github.approval.pathmappers.ParentPathMapper;
-import org.junit.Assume;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
 
-import java.awt.GraphicsEnvironment;
-import java.nio.file.Paths;
-
-@Ignore
 public class WindowsReportersIT {
 
-    public static final ParentPathMapper<String> MAPPER = new ParentPathMapper<String>(Paths.get("target", "verifications", WindowsReportersIT.class.getName()));
+    public static final ParentPathMapper<String> MAPPER = new ParentPathMapper<>(Paths.get("target", "verifications", WindowsReportersIT.class.getName()));
 
     @Rule
     public TestName testName = new TestName();
+
+    @Test
+    public void testFC() throws Exception {
+        testReporter(WindowsReporters.fcNative());
+    }
 
     @Test
     public void testNotePadPlusPlus() throws Exception {

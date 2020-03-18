@@ -44,7 +44,7 @@ import java.nio.file.Paths;
 @Ignore
 public class ReportersIT {
 
-    public static final ParentPathMapper<String> MAPPER = new ParentPathMapper<String>(Paths.get("target", "verifications", ReportersIT.class.getName()));
+    public static final ParentPathMapper<String> MAPPER = new ParentPathMapper<>(Paths.get("target", "verifications", ReportersIT.class.getName()));
 
     @Rule
     public TestName testName = new TestName();
@@ -57,7 +57,6 @@ public class ReportersIT {
     @Test
     public void testConsoleApprovalProcess() throws Exception {
         testReporter(Reporters.console());
-
     }
 
     @Test

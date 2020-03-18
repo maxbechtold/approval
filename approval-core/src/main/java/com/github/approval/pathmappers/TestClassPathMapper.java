@@ -33,6 +33,7 @@ import com.github.approval.PathMapper;
  * @author Max Bechtold
  *
  */
+// TODO maxbechtold Very similar to ParentPathMapper, could be merged
 public class TestClassPathMapper<T> implements PathMapper<T> {
 
     private final Path approvalPath;

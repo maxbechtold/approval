@@ -68,7 +68,7 @@ public class ExecutableDifferenceReporterTest {
     }
 
     @Test
-    public void shouldThrowAnExceptionIfExecutableReturdErrorCode() throws Exception {
+    public void shouldThrowAnExceptionIfExecutableReturnedErrorCode() throws Exception {
         for(int exitCode : new int[] {ERROR_EXIT_CODE, -ERROR_EXIT_CODE}) {
             Process process = Mockito.mock(Process.class);
             when(process.waitFor()).thenReturn(exitCode);
@@ -97,7 +97,7 @@ public class ExecutableDifferenceReporterTest {
     @Test
     public void shouldNotThrowIfReporterExecutableExecutedExitedWithNonErrorValue() throws Exception {
         Process process = Mockito.mock(Process.class);
-        when(process.exitValue()).thenReturn(OK_CODE);
+        when(process.waitFor()).thenReturn(OK_CODE);
         doReturn(process).when(executableDifferenceReporter).startProcess(GVIM_EXECUTABLE, forApproval(testFile).getAbsolutePath(), testFile.file().getAbsolutePath());
 
         executableDifferenceReporter.approveNew("test content".getBytes(StandardCharsets.UTF_8), forApproval(testFile), testFile.file());
@@ -116,14 +116,14 @@ public class ExecutableDifferenceReporterTest {
         assertThat(cmd.get(1), CoreMatchers.equalTo("-f"));
     }
 
-    @Test
-    public void shouldProperlyExecuteNotSameCommand() throws Exception {
+    @Test(expected = AssertionError.class)
+    public void notTheSameShouldPropagateErrorCodesFromDiffTool() throws Exception {
         Process process = Mockito.mock(Process.class);
-        when(process.exitValue()).thenReturn(OK_CODE);
+        when(process.waitFor()).thenReturn(ERROR_EXIT_CODE);
         doReturn(process).when(executableDifferenceReporter).startProcess(Mockito.<String>anyVararg());
-        executableDifferenceReporter.notTheSame(RAW_VALUE, testFile.file(), (TestUtils.VALUE + " difference ").getBytes(StandardCharsets.UTF_8), forApproval(testFile));
-
-        verify(executableDifferenceReporter).startProcess(GDIFFVIM_EXECUTABLE, forApproval(testFile).getAbsolutePath(), testFile.file().getAbsolutePath());
+        byte[] changedValue = (TestUtils.VALUE + "!diff").getBytes(StandardCharsets.UTF_8);
+        
+        executableDifferenceReporter.notTheSame(RAW_VALUE, testFile.file(), changedValue, forApproval(testFile));
     }
 
     @Test(expected = IOException.class)

@@ -26,10 +26,13 @@ import com.github.approval.utils.ExecutableExistsOnPath;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A reporter that will shell out to an executable that is presented on the user's machine to verify the test output. Note that the approval command and the difference commands can be the same.
@@ -67,9 +70,12 @@ public class ExecutableDifferenceReporter implements Reporter {
     @Override
     public void notTheSame(byte[] oldValue, File fileForVerification, byte[] newValue, File fileForApproval) {
         try {
-            execute(buildNotTheSameCommand(fileForVerification, fileForApproval));
+            int processExit = execute(buildNotTheSameCommand(fileForVerification, fileForApproval));
+            if (processExit != 0) {
+                throw new AssertionError(String.format("Approval failed: %s returned non-0 exit code!", approvalCommand));
+            }
         } catch (IOException e) {
-            throw new AssertionError("There was a problem while executing %s", e);
+            throw new AssertionError(String.format("There was a problem while executing %s", approvalCommand), e);
         }
     }
 
@@ -82,7 +88,7 @@ public class ExecutableDifferenceReporter implements Reporter {
         try {
             int processExit = execute(buildApproveNewCommand(approvalDestination, fileForVerification));
             if (processExit != 0) {
-                throw new AssertionError(String.format("Command %s returned an error exit code!", approvalCommand));
+                throw new AssertionError(String.format("First-time approval failed: %s returned non-0 exit code!", approvalCommand));
             }
 
         } catch (IOException e) {
@@ -123,8 +129,12 @@ public class ExecutableDifferenceReporter implements Reporter {
      * @throws IOException if there were any I/O errors
      */
     public static Process runProcess(String... cmdParts) throws IOException {
-        return new ProcessBuilder(buildCommandline(cmdParts))
-                .inheritIO()
+        List<String> commandLine = buildCommandline(cmdParts);
+        Logger.getLogger(ExecutableDifferenceReporter.class.getName()).log(Level.INFO, "Running process with command line {0}", commandLine);
+        return new ProcessBuilder(commandLine)
+                .redirectInput(Redirect.INHERIT)
+                .redirectOutput(Redirect.PIPE)
+                .redirectError(Redirect.PIPE)
                 .start();
     }
 
